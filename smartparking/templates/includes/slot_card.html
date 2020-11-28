@@ -1,0 +1,31 @@
+<!-- slot card -->
+<div class="card small z-depth-0 white">
+  <div class="card-image waves-effect waves-block waves-light">
+    <img src="{{slot.parking_ground.image.url}}">
+    {% if not slot.booked %}
+    <div class="card-title card-title-text " >
+     {% if request.user.is_authenticated %}
+      <a class="waves-effect waves-light btn modal-trigger booking-modal-triger #90caf9 blue lighten-3" href="#slot-{{slot.id}}">
+       
+        Book {{slot.name}}
+      </a>
+      {% else %}
+      <a class="waves-effect waves-light btn modal-trigger booking-modal-triger #90caf9 blue lighten-3" href="#login">
+       
+        Login
+      </a>
+      {% endif %}
+    </div>
+
+    {% else %}
+    <span class="card-title  card-title-text "><a class="waves-effect waves-light btn #d50000 red accent-4" >Booked</a></span>
+    {% endif %}
+  </div>
+  <div class="card-content center">
+      <span class="card-title activator grey-text text-darken-4">{{slot.name}}</span>
+      <p>Book at only Ugx: {{slot.fee}}</p> 
+      <p>Located on  {{slot.parking_ground.name}}</p>
+      
+  </div>
+  {% include "includes/booking_model.html" with slot=slot %}
+</div>

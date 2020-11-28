@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="row paypal-row">
+      <div class="center paypal-row_text-content"> 
+        <h6>
+          Dear {{request.user.username}},You are trying to book slot number {{request.session.bookings_data.slot_id}} with a car model {{request.session.bookings_data.car_model}}
+          of number plate {{request.session.bookings_data.number_plate}}
+          <span>starting from {{request.session.bookings_data.start_time}} to {{request.session.bookings_data.end_time}}</span>
+        </h6>
+        <small>Please click pay to continue with the transaction with paypal</small>
+      </div>
+        <div class="center ">
+            <form>
+                <script src="https://checkout.flutterwave.com/v3.js"></script>
+                <button type="button" onClick="makePayment()">Pay Now</button>
+              </form>
+        </div>
+    </div>
+       
+    
+    <script>
+      function makePayment() {
+        FlutterwaveCheckout({
+          public_key: "FLWPUBK_TEST-566626304bcb74241dffb954130955d5-X",
+          tx_ref: "hooli-tx-1920bbtyt",
+          amount: "{{request.session.bookings_data.fee}}",
+          currency: "UGX",
+          country: "UG",
+          payment_options:"mobilemoney",
+          redirect_url: `${window.location.protocol}//${window.location.host}/payements/transaction-complete/`,
+          customer: {
+            email: "{{request.user.email}}",
+            phone_number: "{{request.session.phone_number}}",
+            name: "{{request.session.username}}",
+          },
+
+          onclose: function() {
+            window.location.href=`${window.location.protocol}//${window.location.host}/`;
+          },
+          customizations: {
+            title: "My store",
+            description: "Payment for items in cart",
+            logo: "https://tse1.mm.bing.net/th?id=OIP.aJzUXZ9pmsWfP_X0FfBxsgHaHf&pid=Api&P=0&w=300&h=300",
+          },
+        });
+      }
+    </script>
+    
+
+
+{% endblock content%}

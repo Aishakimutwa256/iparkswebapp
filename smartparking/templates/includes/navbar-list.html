@@ -1,0 +1,12 @@
+
+{% if request.user.is_authenticated %}
+    
+    <li><a href="{% url 'useraccounts:user_profile' %}"> <i class="material-icons">person</i><span>Account</span></a></li>
+    <li><a   onclick="confirmalert();"> <i class="material-icons">thumb_down</i><span>Logout</span></a></li>
+    <li><a href="{% url 'active_slots' %}">Active Slots</a></li>
+{% else %}
+
+    <li><a class="modal-trigger" href="#login"><i class="material-icons medium">thumb_up</i><span>Login</span></a></li>
+    <li><a href="#create-account" class="modal-trigger"> <i class="material-icons medium">person_add</i><span>Account</span></a></li>
+
+{% endif%}

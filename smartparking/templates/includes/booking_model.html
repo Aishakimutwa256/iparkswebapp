@@ -1,0 +1,42 @@
+
+ <!-- Modal Structure for booking-->
+  <div id="slot-{{slot.id}}" class="modal">
+    <div class="modal-content">
+      <div class="row" >
+        <form  name="slot-form-{{slot.id}}" class="col s12" id="bookings-details-form-{{slot.id}}"  method="POST" enctype="multipart/form-data">
+         
+          {% csrf_token %}
+ 
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="car-model" type="text" name="car-model" class="validate">
+              <label for="car-model">Car Model</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="car-number-plate" type="text" name="number-plate" class="validate">
+              <label for="car-number-plate">Car Number plate</label>
+            </div>
+          </div>
+          <div class="row"></div>
+          <div class="row">
+            <div class="input-field col s12 ">
+              <input type="text"  class="timepicker" name="start" placeholder="starting time">
+              
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="input-field col s12">
+              <input type="text"  class="timepicker" name="end" placeholder="ending time">
+              
+            </div>
+          </div>
+         
+         <a  class="modal-action  waves-effect waves-green btn-flat center" id="book-button" data-slot_id="{{slot.id}}">Book Slot</a>
+        </form>
+      </div>
+    </div>
+  </div>
+ 

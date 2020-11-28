@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="section white">
+    <div class="row white">
+      <div class="col l8 m8 s12 offset-l2 offset-m2">
+        <div class="card-panel white lighten-5 z-depth-0">
+          <div class="row valign-wrapper">
+            <div class="col s4">
+              <img src="https://tse1.mm.bing.net/th?id=OIP.catSwrCWIrSZTyCUzIiQ-QHaHK&pid=Api&P=0&w=183&h=178" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+            </div>
+            <div class="col s6">
+              <h5 class="blue-text lighten-2">
+                {{request.user.username|title}}
+              </h5>
+              <h6 class="blue-text lighten-2">
+                {{request.user.email}}
+              </h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="divider"></div>
+<div class="section white">       
+    <div class="row">
+        <div class="col s12 m8 l8 offset-l3 offset-m3">
+            <ul class="tabs">
+                <li class="tab col s3 "><a href="#bookings" class="blue-text lighten-2"> Bookings</a></li>
+                <li class="tab col s3"><a class="active blue-text lighten-2" href="#transactions">Transactions</a></li>
+                
+            </ul>
+        </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="section white">
+<div class="row " id="bookings">
+<div class="col s12 m8 l8 offset-l2 offset-m2">
+
+      {% for booking in bookings%}
+        <div class="col s12 m6 l6 small">
+          <div class="card white  z-depth-0">
+            <div class="card-content  center grey-text">
+              <strong class="card-title "><small><strong class="blue-text lighten-3">Booking on {{booking.created_at}}</strong></small></strong>
+              <p>Parking Slot: {{booking.slot_id}} </p>
+              <p>Car Model: {{booking.car_model}} </p>
+              <p>Number Plate: {{booking.number_plate}} </p>
+              <p>Started At: {{booking.start_time}} </p>
+              <p>Ended At: {{booking.end_time}} </p>
+
+              
+            </div>
+        </div>
+      </div>
+
+    {% endfor %}
+
+</div> 
+</div>
+
+
+<div class="row white" id="transactions">
+ <div class="col s12 m8 l8 offset-l2 offset-m2">
+    {% for transaction in transactions %}
+          <div class="col s12 m6 l6 small ">
+            <div class="card white  z-depth-0">
+              <div class="card-content center grey-text">
+                <strong class="card-title blue-text lighten-4">Transaction Id {{transaction.transaction_id}}</strong>
+                <p>Transaction Ref: {{transaction.transaction_ref}} </p>
+                <p>Booking Id: {{transaction.booking.booking_id}} </p>
+                <p>Amount Charged: {{transaction.charged_amount}} </p>
+                <small><strong class="blue-text lighten-3">Transaction made on {{transaction.created_on}}</strong></small>
+              </div>
+          </div>
+        </div>          
+  
+   
+   {% endfor %}
+
+ </div> 
+</div>
+
+</div>
+
+{% endblock content%}
+
+
+
+
+
+
+
+

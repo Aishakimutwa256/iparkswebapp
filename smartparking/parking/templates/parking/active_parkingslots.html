@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% block active_slots %}
+        <div class="row active_slots-row">
+            <div class="col l8 m8 s12 offset-l2 offset-m2">
+                <table class="centered responsive-table striped">
+                    <thead>
+                      <tr class="blue-text lighten-2">
+                          <th>Slot Name</th>
+                          <th>Status</th>                   
+                      </tr>
+                    </thead>
+            
+                    <tbody class="table-slots">
+
+                    </tbody>
+                  </table>
+
+            </div>
+        </div>
+
+    {% endblock active_slots %}
+
+{% endblock content %}

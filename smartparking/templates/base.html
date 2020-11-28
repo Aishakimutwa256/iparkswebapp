@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html>
+  <!-- including header links and meta tags -->
+{% include "includes/head.html" %}
+
+  <body>
+    {% include 'includes/navbar.html' %}
+
+    {% if request.session.booking_period%}
+      <form >
+        <input type="hidden" value="{{request.session.booking_period}}" id="booking-session">
+        <input type="hidden" value="{{request.session.booking_id}}" id="booking-id-session">
+      </form>
+    {% endif %}
+   <main >
+
+        {% block content %}
+
+        {% endblock content %}
+
+      
+        <!-- spinner -->
+        {%block spinner %} 
+          {% include "includes/spinner.html"%}
+        {% endblock spinner %}
+
+      {% block user_account_modals %}
+        {% include "includes/modals.html" %}
+      {% endblock user_account_modals %} 
+
+   </main>
+
+
+
+<!-- including javascript files -->
+{% include "includes/js.html" %}
+</body>
+</html>

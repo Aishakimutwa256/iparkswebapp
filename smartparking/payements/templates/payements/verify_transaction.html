@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <main>
+        {% if messages %}
+        <div class="row paypal-row" >
+            <div class="col m8 l8 s10 offset-l2 offset-m2 " style="padding: 1.3rem;">
+                {% for message in messages %}
+                <div {% if message.tags  %} class="alert alert-{{ message.tags }} center" {% endif %} role="alert">{{ message }}</div>
+                {% endfor %}
+            </div>
+
+        </div>
+        {% endif %}
+       
+     
+    </main>
+
+{% endblock content%}

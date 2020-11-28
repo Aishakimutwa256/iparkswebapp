@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+       {% if parking_grounds %}
+
+        {% for parking_ground in parking_grounds %}
+                {% include "includes/parking_ground_card.html" with parking_ground=parking_ground %}
+        {% endfor %}
+       {% endif %}
+  
+{% endblock content%}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <main>
+       {% if slots %}
+       <div class="row">
+           <div class="col l8 m8 s12 offset-l2 offset-m2">
+            {% for slot in slots %}
+                              
+                {% include "includes/slot_card.html" with slot=slot %}
+               
+              {% endfor %}
+           </div>
+       </div>
+
+
+        {% else %}
+            <p>No slots have been created yet</p>
+       {% endif %}
+    </main>
+
+{% endblock content%}
